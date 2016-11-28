@@ -42,5 +42,8 @@ pool.use(async (phantomInstance) => {
   console.log(content)
 })
 
+// Destroying the pool:
+pool.drain().then(() => pool.clear())
+
 // For more API doc, see https://github.com/coopernurse/node-pool#generic-pool
 ```
