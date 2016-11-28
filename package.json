@@ -1,7 +1,7 @@
 {
   "name": "phantom-pool",
   "version": "1.0.0",
-  "description": "",
+  "description": "Resource pool for Node.js PhanomJS",
   "main": "./lib/index.js",
   "directories": {
     "test": "test"
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/blockai/phantom-pool.git"
   },
-  "keywords": [],
+  "keywords": ["phantom", "phantomjs", "generic-pool", "pool", "pooling"],
   "author": "Oli Lalonde <olalonde@gmail.com> (https://syskall.com/)",
   "license": "MIT",
   "bugs": {
@@ -51,5 +51,10 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "debug": "^2.3.3",
+    "generic-pool": "^3.1.4",
+    "phantom": "^3.2.0"
   }
 }
