@@ -37,4 +37,4 @@ data/
 
 # Build directory
 lib/
-
+.npmrc
