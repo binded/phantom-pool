@@ -14,6 +14,7 @@ const startServer = () => new Promise((resolve, reject) => {
 
 const pool = createPhantomPool()
 
+/* eslint-disable no-unused-vars */
 const noPool = async (url) => {
   const instance = await phantom.create()
   const page = await instance.createPage()
