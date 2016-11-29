@@ -30,7 +30,7 @@ const pool = createPhantomPool({
 
 // Automatically acquires a phantom instance and releases it back to the
 // pool when the function resolves or throws
-pool.use(async (phantomInstance) => {
+pool.use(async (instance) => {
   const page = await instance.createPage()
   const status = await page.open('http://google.com', { operation: 'GET' })
   if (status !== 'success') {
