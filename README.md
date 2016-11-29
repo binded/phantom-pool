@@ -4,6 +4,12 @@
 
 Resource pool based on [generic-pool](https://github.com/coopernurse/node-pool) for [PhantomJS](https://github.com/amir20/phantomjs-node).
 
+Creating new phantom instances with `phantom.create()` can be slow. If
+you are frequently creating new instances and destroying them, as a
+result of HTTP requests for example, this module can help by keeping a
+pool of phantom instances alive and making it easy to re-use them across
+requests.
+
 ## Install
 
 ```bash
