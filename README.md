@@ -87,3 +87,12 @@ pool.drain().then(() => pool.clear())
 
 // For more API doc, see https://github.com/coopernurse/node-pool#generic-pool
 ```
+
+## Security
+
+When using phantom-pool, you should be aware that the phantom instance
+you are getting might not be in a completely clean state. It could have
+browser history, cookies or other persistent data from a previous use.
+
+If that is an issue for you, make sure you clean up any sensitive data
+on the phantom instance before returning it to the pool.
