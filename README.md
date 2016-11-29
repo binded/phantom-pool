@@ -10,6 +10,40 @@ result of HTTP requests for example, this module can help by keeping a
 pool of phantom instances alive and making it easy to re-use them across
 requests.
 
+Here's an artificial [benchmark](./test/benchmark.js) to illustrate:
+
+```
+Starting benchmark without pool
+
+noPool-0: 786.829ms
+noPool-1: 790.822ms
+noPool-2: 795.150ms
+noPool-3: 788.928ms
+noPool-4: 793.788ms
+noPool-5: 798.075ms
+noPool-6: 813.130ms
+noPool-7: 803.801ms
+noPool-8: 782.936ms
+noPool-9: 805.630ms
+
+Starting benchmark with pool
+
+pool-0: 48.160ms
+pool-1: 98.966ms
+pool-2: 89.573ms
+pool-3: 99.057ms
+pool-4: 101.970ms
+pool-5: 102.967ms
+pool-6: 102.938ms
+pool-7: 99.359ms
+pool-8: 101.972ms
+pool-9: 103.309ms
+
+Done
+```
+
+Using pool in this benchmark results in an average >8x speed increase.
+
 ## Install
 
 ```bash
