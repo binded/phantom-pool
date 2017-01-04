@@ -66,6 +66,9 @@ const pool = createPhantomPool({
   // specifies how long a resource can stay idle in pool before being removed
   idleTimeoutMillis: 30000, // default.
   // For all opts, see opts at https://github.com/coopernurse/node-pool#createpool
+  phantomArgs: [['--ignore-ssl-errors=true', '--disk-cache=true'], {
+    logLevel: 'debug',
+  }], // arguments passed to phantomjs-node directly, default is `[]`. For all opts, see https://github.com/amir20/phantomjs-node#phantom-object-api
 })
 
 // Automatically acquires a phantom instance and releases it back to the
