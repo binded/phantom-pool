@@ -11,12 +11,14 @@ export default ({
   // specifies how long a resource can stay idle in pool before being removed
   idleTimeoutMillis = 30000,
   phantomArgs = [],
+  validator,
   ...otherConfig
 } = {}) => {
   // TODO: randomly destroy old instances to avoid resource leak?
   const factory = {
     create: () => phantom.create(...phantomArgs),
     destroy: (instance) => instance.exit(),
+    validate: validator,
   }
   const config = {
     max,
