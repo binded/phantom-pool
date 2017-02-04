@@ -10,23 +10,37 @@ export default ({
   min = 2,
   // specifies how long a resource can stay idle in pool before being removed
   idleTimeoutMillis = 30000,
+  // specifies the maximum number of times a resource can be reused before being destroyed
+  maxUses = 50,
+  testOnBorrow = true,
   phantomArgs = [],
-  validator,
+  validator = () => Promise.resolve(true),
   ...otherConfig
 } = {}) => {
   // TODO: randomly destroy old instances to avoid resource leak?
   const factory = {
-    create: () => phantom.create(...phantomArgs),
+    create: () => phantom.create(...phantomArgs)
+      .then(instance => {
+        instance.useCount = 0
+        return instance
+      }),
     destroy: (instance) => instance.exit(),
-    validate: validator,
+    validate: (instance) => validator(instance)
+      .then(valid => Promise.resolve(valid && (maxUses <= 0 || instance.useCount < maxUses))),
   }
   const config = {
     max,
     min,
     idleTimeoutMillis,
+    testOnBorrow,
     ...otherConfig,
   }
   const pool = genericPool.createPool(factory, config)
+  const genericAcquire = pool.acquire.bind(pool)
+  pool.acquire = () => genericAcquire().then(r => {
+    r.useCount += 1
+    return r
+  })
   pool.use = (fn) => {
     let resource
     return pool.acquire()
