@@ -34,7 +34,7 @@ node_modules
 # Temporary / data folders
 .tmp
 data/
+package-lock.json
 
 # Build directory
-lib/
 .npmrc

@@ -1,10 +1,10 @@
-import phantom from 'phantom'
-import genericPool from 'generic-pool'
+const phantom = require('phantom')
+const genericPool = require('generic-pool')
 
 // import initDebug from 'debug'
 // const debug = initDebug('phantom-pool')
 
-export default ({
+module.exports = ({
   max = 10,
   // optional. if you set this, make sure to drain() (see step 3)
   min = 2,
@@ -33,14 +33,14 @@ export default ({
     min,
     idleTimeoutMillis,
     testOnBorrow,
-    ...otherConfig,
+    ...otherConfig
   }
   const pool = genericPool.createPool(factory, config)
   const genericAcquire = pool.acquire.bind(pool)
   pool.acquire = () => genericAcquire().then(r => {
     r.useCount += 1
     return r
-  })
+});
   pool.use = (fn) => {
     let resource
     return pool.acquire()
@@ -57,6 +57,5 @@ export default ({
         throw err
       })
   }
-
   return pool
 }

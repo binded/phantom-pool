@@ -1,5 +1,5 @@
-import test from 'blue-tape'
-import createPool from '../src'
+const test = require('blue-tape')
+const createPool = require('../src')
 
 let phantomPool
 test('create pool with maxUses', async () => {
