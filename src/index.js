@@ -1,10 +1,22 @@
 const phantom = require('phantom')
 const genericPool = require('generic-pool')
 
+//instead of spread operator, takes the first argument (in this case obj with all arguments),
+//creates an object out of all the k-v pairs that are not part of the argument name array in recieves (called 'keys' in the function signature)
+function _objectWithoutProperties(obj, keys) {
+    var target = {};
+    for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+    }
+    return target;
+}
+
 // import initDebug from 'debug'
 // const debug = initDebug('phantom-pool')
 
-module.exports = ({
+module.exports = function({
   max = 10,
   // optional. if you set this, make sure to drain() (see step 3)
   min = 2,
@@ -14,9 +26,9 @@ module.exports = ({
   maxUses = 50,
   testOnBorrow = true,
   phantomArgs = [],
-  validator = () => Promise.resolve(true),
-  ...otherConfig
-} = {}) => {
+  validator = () => Promise.resolve(true)
+} = {}) {
+   const captureFirstArgument = arguments[0];
   // TODO: randomly destroy old instances to avoid resource leak?
   const factory = {
     create: () => phantom.create(...phantomArgs)
@@ -28,12 +40,13 @@ module.exports = ({
     validate: (instance) => validator(instance)
       .then(valid => Promise.resolve(valid && (maxUses <= 0 || instance.useCount < maxUses))),
   }
+  const additionalConfigArgument = _objectWithoutProperties(captureFirstArgument, ['max', 'min', 'idleTimeoutMillis', 'maxUses', 'testOnBorrow', 'phantomArgs', 'validator']);
   const config = {
     max,
     min,
     idleTimeoutMillis,
     testOnBorrow,
-    ...otherConfig
+    additionalConfigArgument
   }
   const pool = genericPool.createPool(factory, config)
   const genericAcquire = pool.acquire.bind(pool)

@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node --harmony test/index.test.js && node --harmony test/maxuses.test.js",
+    "test": "node test/index.test.js && node test/maxuses.test.js",
     "build": "npm run clean && babel ./src --out-dir ./lib --copy-files",
     "clean": "rm -r ./lib/*",
     "lint": "eslint src/ test/"
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "blue-tape": "^1.0.0"
-},
+  },
   "dependencies": {
     "generic-pool": "^3.1.4",
     "phantom": "^3.2.0"
