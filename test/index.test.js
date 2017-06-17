@@ -1,5 +1,5 @@
-import test from 'blue-tape'
-import createPool from '../src'
+const test = require('blue-tape')
+const createPool = require('../src')
 
 const getState = ({ size, available, pending, max, min }) => {
   const state = { size, available, pending, max, min }

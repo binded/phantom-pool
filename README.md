@@ -54,10 +54,15 @@ Requires Node v6+
 
 ## Usage
 
+Currently this package only work if run with the harmony flag:
+```
+node --harmony my_phantom_pool_dependant_app.js
+```
+
 See [./test](./test) directory for usage examples.
 
 ```javascript
-import createPhantomPool from 'phantom-pool'
+const createPhantomPool = require('phantom-pool');
 
 // Returns a generic-pool instance
 const pool = createPhantomPool({
@@ -70,11 +75,11 @@ const pool = createPhantomPool({
   // function to validate an instance prior to use; see https://github.com/coopernurse/node-pool#createpool
   validator: () => Promise.resolve(true), // defaults to always resolving true
   // validate resource before borrowing; required for `maxUses and `validator`
-  testOnBorrow: true // default
+  testOnBorrow: true, // default
   // For all opts, see opts at https://github.com/coopernurse/node-pool#createpool
   phantomArgs: [['--ignore-ssl-errors=true', '--disk-cache=true'], {
-    logLevel: 'debug',
-  }], // arguments passed to phantomjs-node directly, default is `[]`. For all opts, see https://github.com/amir20/phantomjs-node#phantom-object-api
+    logLevel: 'debug'
+  }] // arguments passed to phantomjs-node directly, default is `[]`. For all opts, see https://github.com/amir20/phantomjs-node#phantom-object-api
 })
 
 // Automatically acquires a phantom instance and releases it back to the
