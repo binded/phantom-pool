@@ -57,7 +57,7 @@ Requires Node v6+
 See [./test](./test) directory for usage examples.
 
 ```javascript
-import createPhantomPool from 'phantom-pool'
+const createPhantomPool = require('phantom-pool')
 
 // Returns a generic-pool instance
 const pool = createPhantomPool({
@@ -70,7 +70,7 @@ const pool = createPhantomPool({
   // function to validate an instance prior to use; see https://github.com/coopernurse/node-pool#createpool
   validator: () => Promise.resolve(true), // defaults to always resolving true
   // validate resource before borrowing; required for `maxUses and `validator`
-  testOnBorrow: true // default
+  testOnBorrow: true, // default
   // For all opts, see opts at https://github.com/coopernurse/node-pool#createpool
   phantomArgs: [['--ignore-ssl-errors=true', '--disk-cache=true'], {
     logLevel: 'debug',
