@@ -1,6 +1,6 @@
 {
   "name": "phantom-pool",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Resource pool for Node.js PhantomJS",
   "main": "./lib/index.js",
   "directories": {
