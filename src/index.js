@@ -4,7 +4,7 @@ import genericPool from 'generic-pool'
 // import initDebug from 'debug'
 // const debug = initDebug('phantom-pool')
 
-export default ({
+const initPhantomPool = ({
   max = 10,
   // optional. if you set this, make sure to drain() (see step 3)
   min = 2,
@@ -60,3 +60,9 @@ export default ({
 
   return pool
 }
+
+// To avoid breaking backwards compatibility
+// https://github.com/binded/phantom-pool/issues/12
+initPhantomPool.default = initPhantomPool
+
+export default initPhantomPool
