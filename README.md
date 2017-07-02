@@ -1,6 +1,6 @@
 # phantom-pool
 
-[![Build Status](https://travis-ci.org/blockai/phantom-pool.svg?branch=master)](https://travis-ci.org/blockai/phantom-pool)
+[![Build Status](https://travis-ci.org/binded/phantom-pool.svg?branch=master)](https://travis-ci.org/binded/phantom-pool)
 
 Resource pool based on [generic-pool](https://github.com/coopernurse/node-pool) for [PhantomJS](https://github.com/amir20/phantomjs-node).
 
