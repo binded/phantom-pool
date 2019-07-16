@@ -1,0 +1,56 @@
+{
+	"extends": "tslint:recommended",
+	"rulesDirectory": [
+		"./src/"
+	],
+	"rules": {
+		"no-any": true,
+		"no-unused-expression": true,
+		"unified-signatures": false,
+		"whitespace": [
+			true,
+			"check-branch",
+			"check-operator"
+		],
+		"indent": [
+			true,
+			"tabs",
+			2
+		],
+		"quotemark": [
+			true,
+			"single",
+			"avoid-escape",
+			"avoid-template"
+		],
+		"max-line-length": false,
+		"trailing-comma": [
+			true,
+			{
+				"multiline": "never",
+				"singleline": "never"
+			}
+		],
+		"variable-name": [
+			true,
+			"ban-keywords",
+			"check-format",
+			"allow-leading-underscore",
+			"allow-snake-case"
+		],
+		"interface-name": false,
+		"no-bitwise": false,
+		"no-empty": false,
+		"align": [
+			true,
+			"elements",
+			"members",
+			"statements"
+		],
+		"new-parens": true,
+		"no-arg": true,
+		"no-conditional-assignment": true,
+		"no-consecutive-blank-lines": false,
+		"no-console": false
+	}
+}

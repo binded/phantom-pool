@@ -1,5 +1,5 @@
 import test from 'blue-tape'
-import createPool from '../src'
+import createPool from '../dist'
 
 let phantomPool
 test('create pool with maxUses', async () => {

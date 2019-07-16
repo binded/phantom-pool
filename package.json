@@ -1,70 +1,76 @@
 {
-  "name": "phantom-pool",
-  "version": "1.2.2",
-  "description": "Resource pool for Node.js PhantomJS",
-  "main": "./lib/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "npm run test:fast",
-    "build": "npm run clean && babel ./src --out-dir ./lib --copy-files",
-    "clean": "rimraf ./lib",
-    "lint": "eslint src/ test/",
-    "pretest": "npm run lint",
-    "test:fast": "babel-tape-runner test/*.test.js",
-    "test:watch": "nodemon --exec npm -- run --silent test:fast || true",
-    "semantic-release": "git push && npm test && semantic-release pre && npm run build && npm publish && semantic-release post"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/binded/phantom-pool.git"
-  },
-  "keywords": [
-    "phantom",
-    "phantomjs",
-    "generic-pool",
-    "pool",
-    "pooling"
-  ],
-  "author": "Oli Lalonde <olalonde@gmail.com> (https://syskall.com/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/binded/phantom-pool/issues"
-  },
-  "homepage": "https://github.com/binded/phantom-pool#readme",
-  "engines": {
-    "node": ">=6"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-tape-runner": "^2.0.1",
-    "blue-tape": "^1.0.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "eslint": "^4.1.1",
-    "eslint-config-blockai": "^1.0.3",
-    "nodemon": "^1.11.0",
-    "rimraf": "^2.5.4",
-    "semantic-release": "^6.3.2"
-  },
-  "release": {
-    "debug": false,
-    "verifyConditions": {
-      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "dependencies": {
-    "debug": "^2.3.3",
-    "generic-pool": "^3.1.4",
-    "phantom": "^3.2.0"
-  }
+	"name": "phantom-pool",
+	"version": "1.2.2",
+	"description": "Resource pool for Node.js PhantomJS",
+	"main": "./lib/index.js",
+	"types": "./lib/",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "npm run test:fast",
+		"build": "npm run clean && tsc && babel ./dist --out-dir ./lib --copy-files",
+		"clean": "rimraf ./lib ./dist",
+		"lint": "tslint -p tsconfig.json && eslint test/",
+		"pretest": "npm run lint && tsc",
+		"test:fast": "babel-tape-runner test/*.test.js",
+		"test:watch": "nodemon --exec npm -- run --silent test:fast || true",
+		"semantic-release": "git push && npm test && semantic-release pre && npm run build && npm publish && semantic-release post"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/binded/phantom-pool.git"
+	},
+	"keywords": [
+		"phantom",
+		"phantomjs",
+		"generic-pool",
+		"pool",
+		"pooling"
+	],
+	"author": "Oli Lalonde <olalonde@gmail.com> (https://syskall.com/)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/binded/phantom-pool/issues"
+	},
+	"homepage": "https://github.com/binded/phantom-pool#readme",
+	"engines": {
+		"node": ">=6"
+	},
+	"devDependencies": {
+		"@types/generic-pool": "^3.1.9",
+		"@types/phantom": "^3.2.5",
+		"babel-cli": "^6.26.0",
+		"babel-plugin-add-module-exports": "^0.2.1",
+		"babel-plugin-transform-async-to-generator": "^6.24.1",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-tape-runner": "^2.0.0",
+		"blue-tape": "^1.0.0",
+		"cz-conventional-changelog": "^2.1.0",
+		"eslint": "^6.0.1",
+		"eslint-config-blockai": "^1.0.3",
+		"eslint-plugin-import": "^2.18.0",
+		"nodemon": "^1.19.1",
+		"rimraf": "^2.6.3",
+		"semantic-release": "^15.13.18",
+		"tslint": "^5.18.0",
+		"typescript": "^3.5.3"
+	},
+	"release": {
+		"debug": false,
+		"verifyConditions": {
+			"path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"dependencies": {
+		"debug": "^4.1.1",
+		"generic-pool": "^3.7.1",
+		"phantom": "^6.2.0"
+	}
 }

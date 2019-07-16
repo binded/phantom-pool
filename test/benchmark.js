@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import phantom from 'phantom'
 import http from 'http'
-import createPhantomPool from '../src'
+import createPhantomPool from '../dist'
 
 const startServer = () => new Promise((resolve, reject) => {
   const server = http.createServer((req, res) => {

@@ -38,3 +38,5 @@ data/
 # Build directory
 lib/
 .npmrc
+
+dist/
