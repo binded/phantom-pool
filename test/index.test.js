@@ -1,5 +1,5 @@
 import test from 'blue-tape'
-import createPool from '../src'
+import createPool from '../dist'
 
 const getState = ({ size, available, pending, max, min }) => {
   const state = { size, available, pending, max, min }

@@ -30,6 +30,7 @@ build/Release
 # Temporary / data folders
 .tmp
 data/
+dist/
 
 # Source directory
 src/
