@@ -11,8 +11,9 @@
 		"test": "npm run test:fast",
 		"build": "npm run clean && tsc && babel ./dist --out-dir ./lib --copy-files",
 		"clean": "rimraf ./lib ./dist",
-		"lint": "tslint -p tsconfig.json && eslint test/",
-		"pretest": "npm run lint && tsc",
+		"lint:ts": "tslint -p tsconfig.json",
+		"lint:test": "eslint test/",
+		"pretest": "npm run lint:ts && tsc && npm run lint:test",
 		"test:fast": "babel-tape-runner test/*.test.js",
 		"test:watch": "nodemon --exec npm -- run --silent test:fast || true",
 		"semantic-release": "git push && npm test && semantic-release pre && npm run build && npm publish && semantic-release post"
